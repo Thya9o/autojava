@@ -1,4 +1,4 @@
-package br.com.autosolutions.controller;
+package br.edu.up.autojava.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
-import br.com.autosolutions.dal.VeiculoDAO;
-import br.com.autosolutions.model.Veiculo;
+import br.edu.up.autojava.dal.VeiculoDAO;
+import br.edu.up.autojava.model.Veiculo;
 
 @RequestScoped
 @ManagedBean(name = "veiculoBean")

@@ -3,15 +3,14 @@ package br.edu.up.autojava.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-/*import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;*/
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 
 import br.edu.up.autojava.dal.ClienteDAO;
 import br.edu.up.autojava.model.Cliente;
 
-/*@RequestScoped
-@ManagedBean(name = "clienteBean")*/
-
+@RequestScoped
+@ManagedBean(name = "clienteBean")
 public class ClienteBean {
 
 
