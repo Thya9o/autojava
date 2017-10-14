@@ -65,4 +65,12 @@ public class Veiculo {
 	public void setDetalhes(String detalhes) {
 		this.detalhes = detalhes;
 	}
+	
+	// Verifica se o veiculo é valido (create/update)
+	public boolean validate() {
+		if(this.getPlaca() == null) {
+			return false;
+		}
+		return true;
+	}
 }

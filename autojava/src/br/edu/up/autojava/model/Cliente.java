@@ -144,4 +144,12 @@ public class Cliente {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+	
+	// Verifica se o cliente é valido (create/update)
+	public boolean validate() {
+		if(this.getNome() == null) {
+			return false;
+		}
+		return true;
+	}
 }

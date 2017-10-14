@@ -40,6 +40,7 @@ public class TestarVeiculo {
 		// verifica se os dados cadastrados sao iguais
 		Veiculo persistedObject = dao.buscar(o.getId());
 		assertEquals(true, o.getId() == persistedObject.getId());
+		assertEquals(true, o.validate());
 		
 		// exclui o objeto para nao poluir o banco
 		dao.remover(o);
@@ -55,6 +56,7 @@ public class TestarVeiculo {
 		assertEquals(false, o.getId() != null);
 		assertEquals(false, o.getPlaca() != null);
 		assertEquals(false, dao.buscar(o.getId()) != null);
+		assertEquals(false, o.validate());
 	}
 	
 	@Test
@@ -86,6 +88,7 @@ public class TestarVeiculo {
 		// verifica se o objeto foi alterado
 		assertEquals(true, o.getId() != null);
 		assertEquals(true, dao.buscar(o.getId()).getPlaca().equals("Teste Alterado"));
+		assertEquals(true, o.validate());
 	}
 	
 	@Test
@@ -99,6 +102,7 @@ public class TestarVeiculo {
 		// verifica se o objeto foi alterado
 		assertEquals(true, o.getId() != null);
 		assertEquals(true, dao.buscar(o.getId()).getPlaca() != null);
+		assertEquals(false, o.validate());
 	}
 	
 	@Test

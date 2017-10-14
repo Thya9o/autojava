@@ -6,14 +6,14 @@ import javax.persistence.EntityManager;
 import br.edu.up.autojava.model.Cliente;
 import javax.persistence.NoResultException;
 
-public class ClienteDAO {
+public class ClienteDAO implements Dao<Cliente> {
 
 	// adiciona um novo registro de cliente
 	public boolean adicionar(Cliente o) {
 		try {
 			
 			// verifica se o cliente é valido
-			if(o.getNome() != null) {			
+			if(o.validate()) {			
 				EntityManager em = Conexao.getEntityManager();
 				em.getTransaction().begin();
 				em.persist(o);
@@ -59,7 +59,7 @@ public class ClienteDAO {
 	public boolean alterar(Cliente o) {
 		try {
 		
-			if(o.getNome() != null) {
+			if(o.validate()) {
 				EntityManager em = Conexao.getEntityManager();
 				em.getTransaction().begin();
 				em.merge(o);

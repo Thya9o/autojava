@@ -6,13 +6,13 @@ import javax.persistence.EntityManager;
 import br.edu.up.autojava.model.Veiculo;
 import javax.persistence.NoResultException;
 
-public class VeiculoDAO {
+public class VeiculoDAO implements Dao<Veiculo> {
 	
 	// adiciona um novo registro de veiculo
 	public boolean adicionar(Veiculo o) {
 		try {
 			// verifica se o veiculo é valido
-			if(o.getPlaca() != null) {				
+			if(o.validate()) {				
 				EntityManager em = Conexao.getEntityManager();
 				em.getTransaction().begin();
 				em.persist(o);
@@ -59,7 +59,7 @@ public class VeiculoDAO {
 	public boolean alterar(Veiculo o) {
 		try {
 			// verifica se o veiculo é valido
-			if(o.getPlaca() != null) {				
+			if(o.validate()) {				
 				EntityManager em = Conexao.getEntityManager();
 				em.getTransaction().begin();
 				em.merge(o);
