@@ -1,74 +1,92 @@
 package br.edu.up.autojava.dal;
 
 import java.util.List;
-import javax.persistence.Query;
 import javax.persistence.EntityManager;
+
 import br.edu.up.autojava.model.Veiculo;
 import javax.persistence.NoResultException;
 
 public class VeiculoDAO {
 	
-	public static boolean adicionar(Veiculo veiculo) {
-		try{
-			EntityManager em = Conexao.getEntityManager();
-			em.getTransaction().begin();
-			em.persist(veiculo);
-			em.getTransaction().commit();
-			return true;
-		}catch (Exception e) {
+	// adiciona um novo registro de veiculo
+	public boolean adicionar(Veiculo o) {
+		try {
+			// verifica se o veiculo é valido
+			if(o.getPlaca() != null) {				
+				EntityManager em = Conexao.getEntityManager();
+				em.getTransaction().begin();
+				em.persist(o);
+				em.getTransaction().commit();
+				return true;
+			}
+		
+		}catch(Exception e) {
 			System.out.println("ERRO: " + e);
-			return false;
 		}
+
+		return false;
 	}
 
-	public static Veiculo buscar(int id) {
-		try{
+	// busca um veiculo cadastrado na base
+	public Veiculo buscar(Integer id) {
+		try {
+			// valida se o id nao e nulo
+			if(id == null) {
+				return null;
+			}
+			
 			EntityManager em = Conexao.getEntityManager();
-			Veiculo veiculo = em.find(Veiculo.class, id);
-			return veiculo;
-		}catch (NoResultException e) {
+			Veiculo o = em.find(Veiculo.class, id);
+			return o;
+		
+		}catch(NoResultException e) {
 			return null;
 		}
 	}
 
-	public static List<Veiculo> listar() {
-		try{
+	// lista todos os veiculos cadastrados
+	@SuppressWarnings("unchecked")
+	public List<Veiculo> listar() {
+		try {
 			EntityManager em = Conexao.getEntityManager();
-			Query q = em.createNativeQuery("SELECT * FROM veiculos", Veiculo.class);
-			@SuppressWarnings("unchecked")
-			List<Veiculo> lista = q.getResultList();
-			return lista;
-		}catch (NoResultException e) {
+			return (List<Veiculo>)em.createQuery("SELECT v FROM Veiculo v").getResultList();
+		}catch(NoResultException e) {
 			return null;
 		}
 	}
-
-	public static boolean alterar(Veiculo veiculo) {
-		try{
-			EntityManager em = Conexao.getEntityManager();
-			em.getTransaction().begin();
-			em.merge(veiculo);
-			em.getTransaction().commit();
-			em.close();
-			return true;
+	
+	// altera um registro de veiculo
+	public boolean alterar(Veiculo o) {
+		try {
+			// verifica se o veiculo é valido
+			if(o.getPlaca() != null) {				
+				EntityManager em = Conexao.getEntityManager();
+				em.getTransaction().begin();
+				em.merge(o);
+				em.getTransaction().commit();
+				return true;
+			}
 		}catch (Exception e) {
 			System.out.println("ERRO: " + e);
-			return false;
 		}
+
+		return false;
 	}
 
-	public static boolean remover(Veiculo veiculo) {
-		try{
+	// remove um registro de veiculo
+	public boolean remover(Veiculo o) {
+		try {
+			
 			EntityManager em = Conexao.getEntityManager();
 			em.getTransaction().begin();
-			em.remove(em.find(Veiculo.class, veiculo.getId()));
+			em.remove(em.getReference(Veiculo.class, o.getId()));
 			em.getTransaction().commit();
-			em.close();
 			return true;
-		}catch (Exception e) {
+		
+		}catch(Exception e) {
 			System.out.println("ERRO: " + e);
-			return false;
 		}
-	}
 
+		return false;
+	}
 }

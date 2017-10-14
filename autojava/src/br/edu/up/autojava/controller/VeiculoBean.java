@@ -1,19 +1,19 @@
 package br.edu.up.autojava.controller;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
-import br.edu.up.autojava.dal.VeiculoDAO;
 import br.edu.up.autojava.model.Veiculo;
+import br.edu.up.autojava.dal.VeiculoDAO;
 
 @RequestScoped
 @ManagedBean(name = "veiculoBean")
 public class VeiculoBean {
 	
-	
+	public static VeiculoDAO dao = new VeiculoDAO();
 	private Veiculo veiculo = new Veiculo();
 	
 	@SuppressWarnings("unused")
@@ -28,7 +28,7 @@ public class VeiculoBean {
 	}
 
 	public List<Veiculo> getVeiculos() {
-		return VeiculoDAO.listar();
+		return dao.listar();
 	}
 
 	public void setVeiculos(List<Veiculo> veiculos) {
@@ -36,7 +36,7 @@ public class VeiculoBean {
 	}
 	
 	public String adicionar(Veiculo veiculo){
-		if(VeiculoDAO.adicionar(veiculo)){
+		if(dao.adicionar(veiculo)){
 			this.veiculo = new Veiculo();
 			return "/Veiculo/Listar.xhtml?faces-redirect=true";
 		}else{
@@ -50,7 +50,7 @@ public class VeiculoBean {
 	}
 	
 	public String alterar(Veiculo veiculo){
-		if(VeiculoDAO.alterar(veiculo)){
+		if(dao.alterar(veiculo)){
 			this.veiculo = new Veiculo();
 			return "/Veiculo/Listar.xhtml?faces-redirect=true";
 		}else{
@@ -59,7 +59,7 @@ public class VeiculoBean {
 	}
 	
 	public void remover(Veiculo veiculo){
-		if(VeiculoDAO.remover(veiculo)){
+		if(dao.remover(veiculo)){
 			// Mensagem de sucesso
 		}else{
 			// Mensagem de falha

@@ -1,19 +1,19 @@
 package br.edu.up.autojava.controller;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
-import br.edu.up.autojava.dal.ClienteDAO;
 import br.edu.up.autojava.model.Cliente;
+import br.edu.up.autojava.dal.ClienteDAO;
 
 @RequestScoped
 @ManagedBean(name = "clienteBean")
 public class ClienteBean {
 
-
+	public static ClienteDAO dao = new ClienteDAO();
 	private Cliente cliente = new Cliente();
 	
 	@SuppressWarnings("unused")
@@ -28,7 +28,7 @@ public class ClienteBean {
 	}
 
 	public List<Cliente> getClientes() {
-		return ClienteDAO.listar();
+		return dao.listar();
 	}
 
 	public void setClientes(List<Cliente> clientes) {
@@ -36,7 +36,7 @@ public class ClienteBean {
 	}
 	
 	public String adicionar(Cliente cliente){
-		if(ClienteDAO.adicionar(cliente)){
+		if(dao.adicionar(cliente)){
 			this.cliente = new Cliente();
 			return "/Cliente/Listar.xhtml?faces-redirect=true";
 		}else{
@@ -50,7 +50,7 @@ public class ClienteBean {
 	}
 	
 	public String alterar(Cliente cliente){
-		if(ClienteDAO.alterar(cliente)){
+		if(dao.alterar(cliente)){
 			this.cliente = new Cliente();
 			return "/Cliente/Listar.xhtml?faces-redirect=true";
 		}else{
@@ -59,7 +59,7 @@ public class ClienteBean {
 	}
 	
 	public void remover(Cliente cliente){
-		if(ClienteDAO.remover(cliente)){
+		if(dao.remover(cliente)){
 			// Mensagem de sucesso
 		}else{
 			// Mensagem de falha

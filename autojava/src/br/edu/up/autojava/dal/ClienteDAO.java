@@ -1,75 +1,93 @@
 package br.edu.up.autojava.dal;
 
 import java.util.List;
-import javax.persistence.Query;
 import javax.persistence.EntityManager;
+
 import br.edu.up.autojava.model.Cliente;
 import javax.persistence.NoResultException;
 
 public class ClienteDAO {
 
-	public static boolean adicionar(Cliente cliente) {
-		try{
-			EntityManager em = Conexao.getEntityManager();
-			em.getTransaction().begin();
-			em.persist(cliente);
-			em.getTransaction().commit();
-			return true;
-		}catch (Exception e) {
-			System.out.println("ERRO: " + e);
-			return false;
-		}
-	}
-
-	public static Cliente buscar(int id) {
-		try{
-			EntityManager em = Conexao.getEntityManager();
-			Cliente cliente = em.find(Cliente.class, id);
-			return cliente;
-		}catch (NoResultException e) {
-			return null;
-		}
-	}
-
-	public static List<Cliente> listar() {
-		try{
-			EntityManager em = Conexao.getEntityManager();
-			Query q = em.createNativeQuery("SELECT * FROM clientes", Cliente.class);
-			@SuppressWarnings("unchecked")
-			List<Cliente> lista = q.getResultList();
-			return lista;
-		}catch (NoResultException e) {
-			return null;
-		}
-	}
-
-	public static boolean alterar(Cliente cliente) {
-		try{
-			EntityManager em = Conexao.getEntityManager();
-			em.getTransaction().begin();
-			em.merge(cliente);
-			em.getTransaction().commit();
-			em.close();
-			return true;
-		}catch (Exception e) {
-			System.out.println("ERRO: " + e);
-			return false;
-		}
-	}
-
-	public static boolean remover(Cliente cliente) {
+	// adiciona um novo registro de cliente
+	public boolean adicionar(Cliente o) {
+		try {
+			
+			// verifica se o cliente é valido
+			if(o.getNome() != null) {			
+				EntityManager em = Conexao.getEntityManager();
+				em.getTransaction().begin();
+				em.persist(o);
+				em.getTransaction().commit();
+				return true;
+			}
 		
-		try{
-			EntityManager em = Conexao.getEntityManager();
-			em.getTransaction().begin();
-			em.remove(em.find(Cliente.class, cliente.getId()));
-			em.getTransaction().commit();
-			em.close();
-			return true;
 		}catch (Exception e) {
 			System.out.println("ERRO: " + e);
-			return false;
+		}
+
+		return false;
+	}
+
+	// busca um cliente cadastrado na base
+	public Cliente buscar(Integer id) {
+		try {
+			// valida se o id nao e nulo
+			if(id == null) {
+				return null;
+			}
+			
+			EntityManager em = Conexao.getEntityManager();
+			return em.find(Cliente.class, id);
+			
+		}catch (NoResultException e) {
+			return null;
 		}
 	}
 	
+	// lista todos os clientes cadastrados
+	@SuppressWarnings("unchecked")
+	public List<Cliente> listar() {
+		try {
+			EntityManager em = Conexao.getEntityManager();
+			return (List<Cliente>)em.createQuery("SELECT c FROM Cliente c").getResultList();
+		}catch(NoResultException e) {
+			return null;
+		}
+	}
+	
+	// altera um registro de cliente
+	public boolean alterar(Cliente o) {
+		try {
+		
+			if(o.getNome() != null) {
+				EntityManager em = Conexao.getEntityManager();
+				em.getTransaction().begin();
+				em.merge(o);
+				em.getTransaction().commit();
+				return true;
+			}
+	
+		}catch (Exception e) {
+			System.out.println("ERRO: " + e);
+		}
+
+		return false;
+	}
+	
+	// remove um registro de cliente
+	public boolean remover(Cliente o) {
+		try {
+		
+			EntityManager em = Conexao.getEntityManager();
+			em.getTransaction().begin();
+			em.remove(em.getReference(Cliente.class, o.getId()));
+			em.getTransaction().commit();
+			return true;
+		
+		}catch(Exception e) {
+			System.out.println("ERRO: " + e);
+		}
+
+		return false;
+	}
 }

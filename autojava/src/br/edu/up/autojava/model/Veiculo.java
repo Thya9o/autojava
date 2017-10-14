@@ -1,10 +1,10 @@
 package br.edu.up.autojava.model;
 
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
 @Table(name = "veiculos")
@@ -12,7 +12,7 @@ public class Veiculo {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	private String placa;
 	private String marca;
 	private String modelo;
@@ -20,48 +20,49 @@ public class Veiculo {
 	private String cor;
 	private String detalhes; // Detalhes e características adicionais do veículo
 	
-	public int getId() {
+	// getters
+	public Integer getId() {
 		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
 	}
 	public String getPlaca() {
 		return placa;
 	}
-	public void setPlaca(String placa) {
-		this.placa = placa;
-	}
 	public String getMarca() {
 		return marca;
-	}
-	public void setMarca(String marca) {
-		this.marca = marca;
 	}
 	public String getModelo() {
 		return modelo;
 	}
-	public void setModelo(String modelo) {
-		this.modelo = modelo;
-	}
 	public String getAno() {
 		return ano;
-	}
-	public void setAno(String ano) {
-		this.ano = ano;
 	}
 	public String getCor() {
 		return cor;
 	}
-	public void setCor(String cor) {
-		this.cor = cor;
-	}
 	public String getDetalhes() {
 		return detalhes;
+	}
+	
+	// setters
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public void setPlaca(String placa) {
+		this.placa = placa;
+	}
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+	public void setModelo(String modelo) {
+		this.modelo = modelo;
+	}
+	public void setAno(String ano) {
+		this.ano = ano;
+	}
+	public void setCor(String cor) {
+		this.cor = cor;
 	}
 	public void setDetalhes(String detalhes) {
 		this.detalhes = detalhes;
 	}
-	
-
 }
