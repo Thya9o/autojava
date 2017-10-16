@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>Cadastro de clientes</title>
+	<style>
+		.radioClass td {
+			width: 180px;
+		}
+	</style>
+</h:head>
+<ui:decorate template="/Template/Template.xhtml">
+	<ui:define name="body">
+		<h:body>
+			<h:form id="cadastroCliente"><br/><br/><br/><br/><br/>
+				<div style="margin-left: 15%; width: 30%; float: left">
+					<label>Nome</label>
+					<b:inputText value="#{clienteBean.cliente.nome}"></b:inputText>
+					<label>Sobrenome</label>
+					<b:inputText value="#{clienteBean.cliente.sobrenome}"></b:inputText>
+					<label>Apelido</label>
+					<b:inputText value="#{clienteBean.cliente.apelido}"></b:inputText>
+					<label>Documento</label>
+					<b:inputText value="#{clienteBean.cliente.documento}"></b:inputText>
+					<h:selectOneRadio value="#{clienteBean.cliente.documento_tipo}"
+						styleClass="radioClass">
+						<f:selectItem itemValue="CPF" itemLabel="CPF" />
+						<f:selectItem itemValue="RG" itemLabel="RG" />
+						<f:selectItem itemValue="CNH" itemLabel="CNH" />
+						<f:selectItem itemValue="CNPJ" itemLabel="CNPJ" />
+						<f:selectItem itemValue="Outro" itemLabel="Outro" />
+					</h:selectOneRadio>
+					<label>Data de nascimento</label>
+					<b:inputText value="#{clienteBean.cliente.data_nascimento}">
+						<f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy"></f:convertDateTime>
+					</b:inputText>
+					<label>Situação</label>
+					<b:selectOneMenu value="#{clienteBean.cliente.situacao}">
+						<f:selectItem itemLabel="Inativo" itemValue="1" />
+						<f:selectItem itemLabel="Bloqueado" itemValue="2" />
+					</b:selectOneMenu>
+					<label>Sexo</label>
+					<h:selectOneRadio value="#{clienteBean.cliente.sexo}"
+						styleClass="radioClass">
+						<f:selectItem itemValue="Masculino" itemLabel="Masculino" />
+						<f:selectItem itemValue="Feminino" itemLabel="Feminino" />
+					</h:selectOneRadio>
+					<label>Tipo</label>
+					<h:selectOneRadio value="#{clienteBean.cliente.tipo}"
+						styleClass="radioClass">
+						<f:selectItem itemValue="Física" itemLabel="Pessoa física" />
+						<f:selectItem itemValue="Jurídica" itemLabel="Pessoa jurídica" />
+					</h:selectOneRadio>
+				</div>
+				<div style="margin-right: 15%; width: 30%; float: right">
+					<label>CEP</label>
+					<b:inputText value="#{clienteBean.cliente.cep}"></b:inputText>
+					<label>Endereço</label>
+					<b:inputText value="#{clienteBean.cliente.endereco}"></b:inputText>
+					<label>Número</label>
+					<b:inputText value="#{clienteBean.cliente.numero}"></b:inputText>
+					<label>Estado</label>
+					<b:selectOneMenu value="#{clienteBean.cliente.id_estado}">
+						<f:selectItem itemLabel="Paraná" itemValue="1" />
+						<f:selectItem itemLabel="São Paulo" itemValue="2" />
+						<f:selectItem itemLabel="Batata" itemValue="3" />
+					</b:selectOneMenu>
+					<label>Cidade</label>
+					<b:selectOneMenu value="#{clienteBean.cliente.id_cidade}">
+						<f:selectItem itemLabel="Curitiba" itemValue="1" />
+						<f:selectItem itemLabel="Campina" itemValue="2" />
+						<f:selectItem itemLabel="Piraquara" itemValue="3" />
+					</b:selectOneMenu>
+					<label>Bairro</label>
+					<b:inputText value="#{clienteBean.cliente.bairro}"></b:inputText>
+					<label>Email</label>
+					<b:inputText value="#{clienteBean.cliente.email}"></b:inputText>
+					<br />
+					<b:commandButton type="reset">Cancelar</b:commandButton>
+					<b:commandButton type="submit" class="btn btn-primary"
+						value="Cadastrar"
+						action="#{clienteBean.adicionar(clienteBean.cliente)}" /><br/><br/><br/><br/><br/>
+				</div>
+			</h:form>
+		</h:body>
+	</ui:define>
+</ui:decorate>
+</html>

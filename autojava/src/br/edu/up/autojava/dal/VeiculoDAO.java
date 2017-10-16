@@ -6,7 +6,7 @@ import javax.persistence.EntityManager;
 import br.edu.up.autojava.model.Veiculo;
 import javax.persistence.NoResultException;
 
-public class VeiculoDAO implements Dao<Veiculo> {
+public class VeiculoDAO implements DAO<Veiculo> {
 	
 	// adiciona um novo registro de veiculo
 	public boolean adicionar(Veiculo o) {

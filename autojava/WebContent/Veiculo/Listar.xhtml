@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Lista de veículos</title>
+</h:head>
+<ui:decorate template="/Template/Template.xhtml">
+	<ui:define name="body">
+		<h:body>
+			<h:form id="listarVeiculos"><br/><br/><br/><br/><br/>
+				<b:container>
+					<h:dataTable value="#{veiculoBean.veiculos}" var="veiculo" class="table table-stripped table-hover">
+						<h:column>
+							<f:facet name="header">
+								Código
+							</f:facet>
+							<h:outputText value="#{veiculo.id}"></h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								Placa
+							</f:facet>
+							<h:outputText value="#{veiculo.placa}"></h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								Marca
+							</f:facet>
+							<h:outputText value="#{veiculo.marca}"></h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								Modelo
+							</f:facet>
+							<h:outputText value="#{veiculo.modelo}"></h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								Ano
+							</f:facet>
+							<h:outputText value="#{veiculo.ano}"></h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								Cor
+							</f:facet>
+							<h:outputText value="#{veiculo.cor}"></h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								Detalhes
+							</f:facet>
+							<h:outputText value="#{veiculo.detalhes}"></h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								Ações
+							</f:facet>
+							<b:commandButton action="#{veiculoBean.enviaDados(veiculo)}" value="Alterar" class="btn btn-info" />
+							<b:commandButton action="#{veiculoBean.remover(veiculo)}" value="Deletar" class="btn btn-danger" />
+						</h:column>
+					</h:dataTable>
+				</b:container><br/><br/><br/><br/><br/>
+			</h:form>
+		</h:body>
+	</ui:define>
+</ui:decorate>
+</html>

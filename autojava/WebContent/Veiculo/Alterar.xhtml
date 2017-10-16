@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>Alterar veículo</title>
+</h:head>
+<ui:decorate template="/Template/Template.xhtml">
+	<ui:define name="body">
+		<h:body>
+			<b:form id="alterarVeiculo"><br/><br/><br/><br/><br/>
+				<div style="margin-left: 15%; width: 30%; float: left">
+					<h:inputHidden value="#{veiculoBean.veiculo.id}" />
+					<label>Placa</label>
+					<b:inputText value="#{veiculoBean.veiculo.placa}"></b:inputText>
+					<label>Marca</label>
+					<b:inputText value="#{veiculoBean.veiculo.marca}"></b:inputText>
+					<label>Modelo</label>
+					<b:inputText value="#{veiculoBean.veiculo.modelo}"></b:inputText>
+				</div>
+				<div style="margin-right: 15%; width: 30%; float: right">
+					<label>Cor</label>
+					<b:inputText value="#{veiculoBean.veiculo.cor}"></b:inputText>
+					<label>Ano</label>
+					<b:inputText value="#{veiculoBean.veiculo.ano}"></b:inputText>
+					<label>Detalhes</label>
+					<b:inputTextarea value="#{veiculoBean.veiculo.detalhes}"></b:inputTextarea>
+					<br />
+					<b:commandButton type="reset">Cancelar</b:commandButton>
+					<b:commandButton type="submit" class="btn btn-primary"
+						value="Salvar Alterações"
+						action="#{veiculoBean.alterar(veiculoBean.veiculo)}" /><br/><br/><br/><br/><br/>
+				</div>
+			</b:form>
+		</h:body>
+	</ui:define>
+</ui:decorate>
+</html>

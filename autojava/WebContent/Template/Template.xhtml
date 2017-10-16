@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:b="http://bootsfaces.net/ui"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<script src="http://code.jquery.com/jquery-2.1.3.min.js"/>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"/>
+    <script>
+  		$(function(){
+  			$(".dropdown-toggle").dropdown();
+  		});
+	</script>
+</h:head>
+<h:body>
+	<b:navBar class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Autosolutions</a>
+			</div>
+			<div class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cliente
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="/autojava/Cliente/Cadastrar.xhtml">Cadastrar cliente</a></li>
+							<li><a href="/autojava/Cliente/Listar.xhtml">Lista de clientes</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Veículo
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="/autojava/Veiculo/Cadastrar.xhtml">Cadastrar veículo</a></li>
+							<li><a href="/autojava/Veiculo/Listar.xhtml">Lista de veículos</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</b:navBar>
+	<ui:insert name="body">
+	</ui:insert>
+	<nav class="navbar navbar-inverse navbar-fixed-bottom" style="text-align: center">
+		<h5 style="margin-top: 1%; color: white">© Autosolutions
+			<h:outputText value="#{now}">
+				<f:convertDateTime type="date" locale="pt_BR" pattern="yyyy" />
+			</h:outputText>
+		</h5> 
+	</nav>
+</h:body>
+</html>

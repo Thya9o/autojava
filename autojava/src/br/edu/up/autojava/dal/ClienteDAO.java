@@ -6,7 +6,7 @@ import javax.persistence.EntityManager;
 import br.edu.up.autojava.model.Cliente;
 import javax.persistence.NoResultException;
 
-public class ClienteDAO implements Dao<Cliente> {
+public class ClienteDAO implements DAO<Cliente> {
 
 	// adiciona um novo registro de cliente
 	public boolean adicionar(Cliente o) {

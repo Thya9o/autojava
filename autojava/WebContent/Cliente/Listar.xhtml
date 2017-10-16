@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>Lista de clientes</title>
+</h:head>
+<ui:decorate template="/Template/Template.xhtml">
+	<ui:define name="body">
+		<h:body>
+			<h:form id="listarClientes"><br/><br/><br/><br/><br/>
+				<b:container>
+					<h:dataTable value="#{clienteBean.clientes}" var="cliente"
+						class="table table-stripped table-hover">
+						<h:column>
+							<f:facet name="header">
+								Código
+							</f:facet>
+							<h:outputText value="#{cliente.id}"></h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								Nome completo
+							</f:facet>
+							<h:outputText value="#{cliente.nome} #{cliente.sobrenome}"></h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								Documento
+							</f:facet>
+							<h:outputText
+								value="#{cliente.documento_tipo}: #{cliente.documento}"></h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								Data de nascimento
+							</f:facet>
+							<h:outputText value="#{cliente.data_nascimento}"></h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								Data de cadastro
+							</f:facet>
+							<h:outputText value="#{cliente.data_cadastro}"></h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								CEP
+							</f:facet>
+							<h:outputText value="#{cliente.cep}"></h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								Cidade
+							</f:facet>
+							<h:outputText value="#{cliente.id_cidade}"></h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								Estado
+							</f:facet>
+							<h:outputText value="#{cliente.id_estado}"></h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								Email
+							</f:facet>
+							<h:outputText value="#{cliente.email}"></h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								Ações
+							</f:facet>
+							<b:commandButton action="#{clienteBean.enviaDados(cliente)}"
+								value="Alterar" class="btn btn-info" />
+							<b:commandButton action="#{clienteBean.remover(cliente)}"
+								value="Deletar" class="btn btn-danger" />
+						</h:column>
+					</h:dataTable>
+				</b:container><br/><br/><br/><br/><br/>
+			</h:form>
+		</h:body>
+	</ui:define>
+</ui:decorate>
+</html>

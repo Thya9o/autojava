@@ -13,8 +13,8 @@ import br.edu.up.autojava.dal.ClienteDAO;
 @ManagedBean(name = "clienteBean")
 public class ClienteBean {
 
-	public static ClienteDAO dao = new ClienteDAO();
-	private Cliente cliente = new Cliente();
+	public static ClienteDAO dao;
+	private Cliente cliente;
 	
 	@SuppressWarnings("unused")
 	private List<Cliente> clientes = new ArrayList<Cliente>();
